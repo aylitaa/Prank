@@ -4,10 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Prank Notification</title>
+    <style>
+        /* Ajout d'un style pour changer la couleur de fond */
+        body {
+            background-color: black;
+            color: white; /* Change la couleur du texte pour une meilleure visibilité sur fond noir */
+        }
+        /* Style pour masquer le bouton une fois le GIF affiché */
+        .hidden {
+            display: none;
+        }
+    </style>
 </head>
 <body>
     <h1> Surprise </h1>
-    <button onclick="showNotification()"> show notification </button>
+    <button id="showButton" onclick="showNotification()"> show notification </button>
     <div id="gifContainer"></div> <!-- Div pour afficher le GIF -->
     <script>
         function showNotification() {
@@ -42,9 +53,9 @@
             var gif = document.createElement('img');
             gif.src = url;
             gifContainer.appendChild(gif);
+
             // Masquer le bouton après l'affichage du GIF
-        var button = document.querySelector('button');
-        button.style.display = 'none';
+            document.getElementById('showButton').classList.add('hidden');
         }
 
         var urlParams = new URLSearchParams(window.location.search);
