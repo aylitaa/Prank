@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prank Notification</title>
+</head>
+<body>
+    <h1>Notification Prank</h1>
+    <button onclick="showNotification()">Show Notification</button>
+    <script>
+        function showNotification() {
+            if (Notification.permission === 'granted') {
+                navigator.serviceWorker.getRegistration().then(function(reg) {
+                    reg.showNotification('Have a nice day <3', {
+                        body: 'Here is a funny GIF for you!',
+                        icon: 'joi_danse.gif,
+                        
+                    });
+                });
+            } else if (Notification.permission !== 'denied') {
+                Notification.requestPermission().then(function(permission) {
+                    if (permission === 'granted') {
+                        showNotification();
+                    }
+                });
+            }
+        }
+
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('service-worker.js').then(function() {
+                console.log('Service Worker Registered');
+            });
+        }
+    </script>
+</body>
+</html>
