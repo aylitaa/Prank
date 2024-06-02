@@ -12,8 +12,8 @@
         function showNotification() {
             if (Notification.permission === 'granted') {
                 navigator.serviceWorker.getRegistration().then(function(reg) {
-                    reg.showNotification('Have a nice day <3', {
-                        body: 'Here is a funny GIF for you!',
+                    reg.showNotification('Have a nice day', {
+                        body: '<33',
                         image: 'https://github.com/aylitaa/Prank/raw/main/joi_danse.gif',
                     });
                 });
