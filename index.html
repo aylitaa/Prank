@@ -10,19 +10,17 @@
     <button onclick="showNotification()"> show notification </button>
     <div id="gifContainer"></div> <!-- Div pour afficher le GIF -->
     <script>
-        // Fonction pour afficher la notification
         function showNotification() {
             if (Notification.permission === 'granted') {
                 navigator.serviceWorker.getRegistration().then(function(reg) {
-                    reg.showNotification('Have a nice day', {
+                    var options = {
                         body: '<33',
                         icon: 'https://github.com/aylitaa/Prank/raw/main/Joi_dance.gif',
                         data: {
-                            url: 'https://github.com/aylitaa/Prank/raw/main/Joi_dance.gif' // URL du GIF
+                            url: window.location.href + '?gif=https://github.com/aylitaa/Prank/raw/main/Joi_dance.gif'
                         }
-                    });
-                    // Appel de la fonction showGIF ici avec l'URL du GIF
-                    showGIF('https://github.com/aylitaa/Prank/raw/main/Joi_dance.gif');
+                    };
+                    reg.showNotification('Have a nice day', options);
                 });
             } else if (Notification.permission !== 'denied') {
                 Notification.requestPermission().then(function(permission) {
@@ -33,14 +31,12 @@
             }
         }
 
-        // Enregistrement du service worker
         if ('serviceWorker' in navigator) {
             navigator.serviceWorker.register('service-worker.js').then(function() {
                 console.log('Service Worker Registered');
             });
         }
 
-        // Fonction pour afficher le GIF sur la page
         function showGIF(url) {
             var gifContainer = document.getElementById('gifContainer');
             var gif = document.createElement('img');
@@ -48,11 +44,9 @@
             gifContainer.appendChild(gif);
         }
 
-        // Récupération de l'URL du GIF des paramètres de l'URL
         var urlParams = new URLSearchParams(window.location.search);
         var gifUrl = urlParams.get('gif');
         if (gifUrl) {
-            // Affichage du GIF sur la page
             showGIF(gifUrl);
         }
     </script>
