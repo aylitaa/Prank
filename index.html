@@ -8,14 +8,16 @@
 <body>
     <h1> Surprise </h1>
     <button onclick="showNotification()"> show notification </button>
+    <div id="gifContainer"></div> <!-- Div pour afficher le GIF -->
     <script>
         function showNotification() {
             if (Notification.permission === 'granted') {
                 navigator.serviceWorker.getRegistration().then(function(reg) {
                     reg.showNotification('Have a nice day', {
                         body: '<33',
+                        icon: 'https://github.com/aylitaa/Prank/raw/main/Joi_dance.gif'
                         data: {
-                            url: 'https://github.com/aylitaa/Prank/raw/main/Joi_dance.gif' // URL de la page web avec le GIF
+                            url: 'https://github.com/aylitaa/Prank/raw/main/Joi_dance.gif' // URL du GIF
                         }
                     });
                 });
@@ -32,6 +34,23 @@
             navigator.serviceWorker.register('service-worker.js').then(function() {
                 console.log('Service Worker Registered');
             });
+        }
+
+        // Fonction pour afficher le GIF sur la page
+        function showGIF(url) {
+            var gifContainer = document.getElementById('gifContainer');
+            var gif = document.createElement('img');
+            gif.src = url;
+            gifContainer.appendChild(gif);
+        }
+
+        // Vérifie si la page a été ouverte via la notification
+        if (window.location.search.includes('?gif')) {
+            // Extrait l'URL du GIF de l'URL de la page
+            var urlParams = new URLSearchParams(window.location.search);
+            var gifUrl = urlParams.get('gif');
+            // Affiche le GIF sur la page
+            showGIF(gifUrl);
         }
     </script>
 </body>
