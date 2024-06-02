@@ -14,7 +14,7 @@
                 navigator.serviceWorker.getRegistration().then(function(reg) {
                     reg.showNotification('Have a nice day <3', {
                         body: 'Here is a funny GIF for you!',
-                        icon: 'https://github.com/aylitaa/Prank/raw/main/joi_danse.gif',
+                        image: 'https://github.com/aylitaa/Prank/raw/main/joi_danse.gif',
                     });
                 });
             } else if (Notification.permission !== 'denied') {
