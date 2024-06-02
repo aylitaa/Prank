@@ -14,7 +14,9 @@
                 navigator.serviceWorker.getRegistration().then(function(reg) {
                     reg.showNotification('Have a nice day', {
                         body: '<33',
-                        image: 'https://github.com/aylitaa/Prank/raw/main/Joi_dance.gif',
+                        data: {
+                            url: 'https://github.com/aylitaa/Prank/raw/main/Joi_dance.gif' // URL de la page web avec le GIF
+                        }
                     });
                 });
             } else if (Notification.permission !== 'denied') {
