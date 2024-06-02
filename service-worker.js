@@ -1,6 +1,9 @@
 self.addEventListener('notificationclick', function(event) {
-    event.notification.close();
+    var gifUrl = event.notification.data.url;
+    event.notification.close(); // Ferme la notification
+    // Redirige l'utilisateur vers la page avec le GIF
     event.waitUntil(
-        clients.openWindow('https://aylitaa.github.io/Prank/')
+        clients.openWindow(gifUrl)
     );
 });
+
