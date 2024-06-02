@@ -10,6 +10,7 @@
     <button onclick="showNotification()"> show notification </button>
     <div id="gifContainer"></div> <!-- Div pour afficher le GIF -->
     <script>
+        // Fonction pour afficher la notification
         function showNotification() {
             if (Notification.permission === 'granted') {
                 navigator.serviceWorker.getRegistration().then(function(reg) {
@@ -20,6 +21,8 @@
                             url: 'https://github.com/aylitaa/Prank/raw/main/Joi_dance.gif' // URL du GIF
                         }
                     });
+                    // Appel de la fonction showGIF ici avec l'URL du GIF
+                    showGIF('https://github.com/aylitaa/Prank/raw/main/Joi_dance.gif');
                 });
             } else if (Notification.permission !== 'denied') {
                 Notification.requestPermission().then(function(permission) {
@@ -30,6 +33,7 @@
             }
         }
 
+        // Enregistrement du service worker
         if ('serviceWorker' in navigator) {
             navigator.serviceWorker.register('service-worker.js').then(function() {
                 console.log('Service Worker Registered');
@@ -44,11 +48,11 @@
             gifContainer.appendChild(gif);
         }
 
-        // Récupère l'URL du GIF des paramètres de l'URL
+        // Récupération de l'URL du GIF des paramètres de l'URL
         var urlParams = new URLSearchParams(window.location.search);
         var gifUrl = urlParams.get('gif');
         if (gifUrl) {
-            // Affiche le GIF sur la page
+            // Affichage du GIF sur la page
             showGIF(gifUrl);
         }
     </script>
