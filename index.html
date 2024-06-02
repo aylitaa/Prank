@@ -52,6 +52,18 @@
             // Affiche le GIF sur la page
             showGIF(gifUrl);
         }
+
+        // Gère l'événement lorsque la page est ouverte à partir de la notification
+        window.addEventListener('load', function() {
+            // Récupère les données de la notification
+            var url = sessionStorage.getItem('gifUrl');
+            // Si une URL est présente, affiche le GIF
+            if (url) {
+                showGIF(url);
+                // Efface les données de la session
+                sessionStorage.removeItem('gifUrl');
+            }
+        });
     </script>
 </body>
 </html>
