@@ -42,6 +42,9 @@
             var gif = document.createElement('img');
             gif.src = url;
             gifContainer.appendChild(gif);
+            // Masquer le bouton après l'affichage du GIF
+        var button = document.querySelector('button');
+        button.style.display = 'none';
         }
 
         var urlParams = new URLSearchParams(window.location.search);
